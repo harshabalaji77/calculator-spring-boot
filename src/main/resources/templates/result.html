@@ -1,31 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App - Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            padding: 80px 40px;
+            min-height: 100vh;
+        }
+
+        .calculator-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+            text-align: left;
+        }
+
+        .result-section {
+            background-color: #f8f9fa;
+            border: 1.5px solid #d1d5db;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .result-item {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .result-label {
+            color: #374151;
+            font-size: 15px;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        .result-value {
+            color: #1a1a2e;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .form-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            color: #374151;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: #1a1a2e;
+            border: 1.5px solid #d1d5db;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            transition: all 0.2s ease;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4b5563;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.08);
+        }
+
+        input[type="number"]::placeholder {
+            color: #9ca3af;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 11px 20px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1;
+            min-width: 105px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: none;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .button-icon {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        button[value="add"] {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+
+        button[value="add"]:hover {
+            background-color: #1a252f;
+        }
+
+        button[value="sub"] {
+            background-color: #546e7a;
+            color: #ffffff;
+        }
+
+        button[value="sub"]:hover {
+            background-color: #455a64;
+        }
+
+        button[value="mul"] {
+            background-color: #5d6d7e;
+            color: #ffffff;
+        }
+
+        button[value="mul"]:hover {
+            background-color: #4a5966;
+        }
+
+        button[value="div"] {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        button[value="div"]:hover {
+            background-color: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 60px 24px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .result-section {
+                padding: 20px;
+            }
+
+            .result-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            input[type="number"] {
+                padding: 13px 16px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .result-value {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Calculation Result</h1>
-    <div>
-        <p><strong>Result:</strong> <span th:text="${result}"></span></p>
-        <p><strong>Operation:</strong> <span th:text="${operation}"></span></p>
-        <form action="/calculate" method="POST">
-            <label for="num1">Enter Number 1:</label>
-            <input type="number" id="num1" name="num1" value="${num1}" required>
-
-            <br><br>
-
-            <label for="num2">Enter Number 2:</label>
-            <input type="number" id="num2" name="num2" value="${num2}" required>
-
-            <br><br>
-
-            <div>
-                <button type="submit" name="operation" value="add">Add</button>
-                <button type="submit" name="operation" value="sub">Subtract</button>
-                <button type="submit" name="operation" value="mul">Multiply</button>
-                <button type="submit" name="operation" value="div">Divide</button>
+    <div class="calculator-container">
+        <h1>Calculation Result</h1>
+        
+        <div class="result-section">
+            <div class="result-item">
+                <span class="result-label">Result:</span>
+                <span class="result-value" th:text="${result}">0</span>
             </div>
-        </form>
+            <div class="result-item">
+                <span class="result-label">Operation:</span>
+                <span class="result-value" th:text="${operation}">-</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2 class="section-title">Calculate Again</h2>
+            
+            <form action="/api/calculate" method="POST">
+                <div class="form-group">
+                    <label for="num1">Enter first number</label>
+                    <input type="number" id="num1" name="num1" value="${num1}" step="any" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="num2">Enter second number</label>
+                    <input type="number" id="num2" name="num2" value="${num2}" step="any" required>
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" name="operation" value="add">
+                        <span class="button-icon">+</span>
+                        <span>Add</span>
+                    </button>
+                    <button type="submit" name="operation" value="sub">
+                        <span class="button-icon">−</span>
+                        <span>Subtract</span>
+                    </button>
+                    <button type="submit" name="operation" value="mul">
+                        <span class="button-icon">×</span>
+                        <span>Multiply</span>
+                    </button>
+                    <button type="submit" name="operation" value="div">
+                        <span class="button-icon">÷</span>
+                        <span>Divide</span>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

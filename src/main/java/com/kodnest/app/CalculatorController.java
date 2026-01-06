@@ -3,22 +3,24 @@ package com.kodnest.app;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/api")
 public class CalculatorController {
 	
 	@Autowired
 	private CalculatorService calculatorService;
 	
-	@RequestMapping("/")
+	@GetMapping("/home")
 	public String home() {
 		return "home";
 	}
 	
-	@PostMapping("/")
+	@PostMapping("/calculate")
 	public String calculate(@RequestParam("num1") double n1, @RequestParam("num1") double n2, @RequestParam("operation") String operation, Model m) {
 		double result = 0;
 		
