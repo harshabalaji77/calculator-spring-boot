@@ -1,21 +1,19 @@
-# 🧮 Calculator App
+## Calculator App
 
 A modern web calculator built with Spring Boot, featuring clean architecture and responsive design.
-
-## ✨ Features
 
 - **Arithmetic Operations**: Addition, Subtraction, Multiplication, Division
 - **Smart Validation**: Real-time input validation with error handling
 - **Responsive UI**: Seamless experience across all devices
 - **MVC Architecture**: Clean separation of concerns
 
-## 🛠️ Technology Stack
+### 🛠️ Technology Stack
 
 - **Backend**: Spring Boot 4.0.1, Java 17
 - **Frontend**: HTML5, CSS3, Thymeleaf
 - **Build Tool**: Maven
 
-## 🚀 Quick Start
+### 🚀 Quick Start
 
 ```bash
 git clone https://github.com/your-username/CalculatorApp.git
@@ -25,13 +23,13 @@ mvn spring-boot:run
 
 🌐 **Access**: `http://localhost:8080/api/home`
 
-## 💻 Usage
+### 💻 Usage
 
 1. Enter two numeric values
 2. Select your operation (+, -, ×, ÷)
 3. Click "Calculate" for instant results
 
-## 📁 Architecture
+### 📁 Architecture
 
 ```
 src/main/java/com/kodnest/app/
@@ -44,14 +42,14 @@ src/main/resources/templates/
 └── result.html                 # Results display
 ```
 
-## 🔌 API Endpoints
+### 🔌 API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/api/home` | Calculator interface |
 | POST | `/api/calculate` | Process calculations |
 
-## 🧪 Testing
+### 🧪 Testing
 
 ```bash
 mvn test
